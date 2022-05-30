@@ -1,0 +1,7 @@
+bin/
+db.sqlite3
+lib/
+manage.py
+pyvenv.cfg
+__init__.py
+__pycache__
