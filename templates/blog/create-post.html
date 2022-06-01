@@ -1,0 +1,24 @@
+{% load static %}
+{% include 'header.html' %}
+
+        <section class="section wb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="page-wrapper">
+
+					<form action="" method="POST" class="form-wrapper" enctype="multipart/form-data">
+					  {% csrf_token %}
+
+					  {{ form.as_p }}
+
+					  <input type="submit" value="Post">
+					</form>
+                            
+                        </div><!-- end page-wrapper -->
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end container -->
+        </section>
+
+{% include 'footer.html' %}
