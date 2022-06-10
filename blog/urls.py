@@ -3,7 +3,7 @@ from . import views
 
 
 urlpatterns = [
-	path('tech_author/', views.tech_author, name='tech_author'),
+	path('tech_author/<str:pk>/', views.tech_author, name='tech_author'),
 	path('tech_category_01/', views.tech_category_01, name='tech_category_01'),
 	path('tech_category_02/', views.tech_category_02, name='tech_category_02'),
 	path('tech_category_03/', views.tech_category_03, name='tech_category_03'),

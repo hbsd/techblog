@@ -6,7 +6,7 @@ from .models import Post
 class PostForm(ModelForm):
 	class Meta:
 		model = Post
-		fields = ['title', 'image', 'description', 'source', 'tags']
+		fields = ['title', 'image', 'description', 'owner', 'source', 'tags']
 		widgets = {
 			'tags': forms.CheckboxSelectMultiple(),
 		}
