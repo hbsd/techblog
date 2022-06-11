@@ -15,7 +15,7 @@
                                     </div><!-- end col -->
 
                                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                                        <h4>{{ profile.full_name }}</h4>
+                                        <h4>{{ profile.name }}</h4>
 										<p>{{ profile.short_intro|slice:"100" }}</p>
 										<p>{{ profile.bio|slice:"500" }}</p>
 
@@ -53,7 +53,7 @@
 
                             <hr class="invis1">
 
-							<h4>The latest from {{ profile.full_name }}:</h4><br>
+							<h4>The latest from {{ profile.name }}:</h4><br>
 
 							{% for post in profile.post_set.all %}
                             <div class="blog-list clearfix">
@@ -71,7 +71,7 @@
                                         <h4><a href="{% url 'tech_single' post.id %}" title="">{{ post.title }}</a></h4>
                                         <p>{{ post.description|slice:"150" }}...</p>
                                         <small>{{ post.created }}</small>
-                                        <small>by {{ post.owner.full_name }}</small>
+                                        <small>by {{ post.owner.name }}</small>
                                     </div><!-- end meta -->
                                 </div><!-- end blog-box -->
 								{% endfor %}

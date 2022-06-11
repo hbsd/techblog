@@ -12,7 +12,7 @@
 
                                 <div class="blog-meta big-meta">
                                     <small>{{ post.created }}</small>
-                                    <small>by {{ post.owner.full_name }}</small>
+                                    <small>by {{ post.owner.name }}</small>
                                 </div><!-- end meta -->
 
 								<br>
@@ -60,7 +60,7 @@
                                     </div><!-- end col -->
 
                                     <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
-                                        <h4><a href="{% url 'tech_author' post.owner.id %}">{{ post.owner.full_name }}</a></h4>
+                                        <h4><a href="{% url 'tech_author' post.owner.id %}">{{ post.owner.name }}</a></h4>
 										<p>{{ post.owner.short_intro|slice:"100" }}</p>
 										<p>{{ post.owner.bio|slice:"500" }}</p>
 

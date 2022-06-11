@@ -3,6 +3,7 @@ from django import forms
 from .models import Post
 
 
+# Create a new post
 class PostForm(ModelForm):
 	class Meta:
 		model = Post

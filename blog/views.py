@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Post
 from writers.models import Profile
 from .forms import PostForm
@@ -44,6 +45,7 @@ def tech_single(request, pk):
 
 
 # CRUD operations
+@login_required(login_url="login")
 def create_post(request):
 	form = PostForm()
 
@@ -57,6 +59,7 @@ def create_post(request):
 	return render(request, 'blog/create-post.html', context)
 
 
+@login_required(login_url="login")
 def update_post(request, pk):
 	post = Post.objects.get(id=pk)
 	form = PostForm(instance=post)
@@ -71,6 +74,7 @@ def update_post(request, pk):
 	return render(request, 'blog/create-post.html', context)
 
 
+@login_required(login_url="login")
 def delete_post(request, pk):
 	post = Post.objects.get(id=pk)
 	if request.method == 'POST':
