@@ -5,3 +5,7 @@ manage.py
 pyvenv.cfg
 __init__.py
 __pycache__
+
+# images
+*.jpg
+*.png

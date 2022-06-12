@@ -4,7 +4,7 @@ from writers.models import Profile
 
 
 class Post(models.Model):
-	owner = models.ForeignKey(Profile, null=True, blank=True,
+	owner = models.ForeignKey(Profile, null=True, blank=False,
 							  on_delete=models.SET_NULL)
 	title = models.CharField(max_length=200, null=False, blank=False)
 	description = models.TextField(null=False, blank=False)
