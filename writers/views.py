@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm, ProfileForm
 
 
 def login_user(request):
@@ -57,3 +57,19 @@ def register_user(request):
 
 	context = {'page': page, 'form': form}
 	return render(request, 'writers/login_register.html', context)
+
+
+@login_required(login_url='login')
+def edit_account(request):
+	profile = request.user.profile
+	form = ProfileForm(instance=profile)
+
+	if request.method == 'POST':
+		form = ProfileForm(request.POST, request.FILES, instance=profile)
+		if form.is_valid():
+			form.save()
+
+			return redirect('tech_index')
+
+	context = {'form': form}
+	return render(request, 'writers/profile_form.html', context)
