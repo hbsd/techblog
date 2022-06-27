@@ -31,6 +31,7 @@
                                             </a>
                                         </div><!-- end media --><br>
 							    {% if request.user.is_authenticated %}
+								{% if post.owner == request.user.profile %}
 								<a href="{% url 'update_post' post.id %}">
 								  <img src="{% static 'images/edit.png' %}" alt="Edit logo">Edit
 								</a>
@@ -38,6 +39,7 @@
 								<a href="{% url 'delete_post' post.id %}">
 								  <img src="{% static 'images/delete.png' %}" alt="Delete logo">Delete
 								</a>
+								{% endif %}
 								{% endif %}
                                     </div><!-- end col -->
 

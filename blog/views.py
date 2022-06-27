@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Post
 from writers.models import Profile
+from blog.models import Post
 from .forms import PostForm
 
 
@@ -47,12 +48,15 @@ def tech_single(request, pk):
 # CRUD operations
 @login_required(login_url="login")
 def create_post(request):
+	profile = request.user.profile
 	form = PostForm()
 
 	if request.method == 'POST':
 		form = PostForm(request.POST, request.FILES)
 		if form.is_valid():
-			form.save()
+			post = form.save(commit=False)
+			post.owner = profile
+			post.save()
 			return redirect('tech_index')
 	
 	context = {'form': form}
@@ -61,7 +65,8 @@ def create_post(request):
 
 @login_required(login_url="login")
 def update_post(request, pk):
-	post = Post.objects.get(id=pk)
+	profile = request.user.profile
+	post = profile.post_set.get(id=pk)
 	form = PostForm(instance=post)
 
 	if request.method == 'POST':
@@ -76,9 +81,11 @@ def update_post(request, pk):
 
 @login_required(login_url="login")
 def delete_post(request, pk):
-	post = Post.objects.get(id=pk)
+	profile = request.user.profile
+	post = profile.post_set.get(id=pk)
 	if request.method == 'POST':
 		post.delete()
 		return redirect('tech_index')
+	
 	context = {'object': post}
 	return render(request, 'blog/delete-post.html', context)
